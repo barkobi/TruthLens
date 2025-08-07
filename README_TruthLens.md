@@ -2,9 +2,9 @@
 
 TruthLens is a web app that uses GPT to detect potential misinformation or bias in social media posts, headlines, or short-form content.
 
-
 ## Link to youtube
 
+https://www.youtube.com/watch?v=xVke95ULrDI
 
 ## Features
 
