@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-openai.api_key = "you-api-key"
+openai.api_key = os.getenv("API_KEY")
 
 def analyze_content_with_gpt(text):
     prompt = (
