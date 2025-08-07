@@ -5,19 +5,25 @@ import os
 
 app = Flask(__name__)
 CORS(app)
-
-openai.api_key = os.getenv("API_KEY")
+api_key = os.getenv("API_KEY")
+openai.api_key = api_key
 
 def analyze_content_with_gpt(text):
     prompt = (
-        "Analyze the following text for potential misinformation, bias, or lack of verifiable sources. "
-        "If there are issues, flag them and explain why. Be specific, and provide a confidence rating (High/Medium/Low):\n\n"
-        f"Text: {text}\n\n"
-        "Respond in this format:\n"
-        "Flags: [list of flags, e.g. 'Potential Bias', 'Unverified Claim']\n"
-        "Explanation: ...\n"
-        "Confidence: ...\n"
-    )
+    "You are a critical thinking assistant trained in psychology and media literacy.\n"
+    "Analyze the following text and identify:\n"
+    "- Potential misinformation (false or misleading information)\n"
+    "- Any kind of bias (including emotional, political, or persuasive framing)\n"
+    "- Any cognitive biases or logical fallacies present (e.g., confirmation bias, framing effect, appeal to authority, slippery slope, etc.)\n"
+    "- If a claim lacks a verifiable source\n\n"
+    "Be specific. Point out exactly which part of the text shows the issue.\n\n"
+    f"Text: {text}\n\n"
+    "Respond in this format:\n"
+    "Flags: [e.g. 'Confirmation Bias', 'Unverified Claim', 'Framing Effect']\n"
+    "Explanation: ...\n"
+    "Confidence: High / Medium / Low\n"
+)
+
     
     try:
         client = openai.OpenAI(api_key=openai.api_key)
